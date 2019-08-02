@@ -1,19 +1,76 @@
 package com.example.travelmantics;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+    //variables that will contain the FirebaseDatabase object:
+    private FirebaseDatabase mFirebaseDatabase;
+    //variable  that will hold the database reference:
+    private DatabaseReference mDatabaseReference;
+
+    EditText txtTitle;
+    EditText txtDescription;
+    EditText txtPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //create an instance of the database using getInstance() method:
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //create the refernce calling getReference() and then the child method:
+        mDatabaseReference = mFirebaseDatabase.getReference().child("traveldeals");
+
+        txtTitle = (EditText)findViewById(R.id.txtTitle);
+        txtDescription = (EditText) findViewById(R.id.txtDescription);
+        txtPrice = (EditText) findViewById(R.id.txtPrice);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.save_menu:
+                saveDeal();
+                Toast.makeText(this, "DEAL SAVED", Toast.LENGTH_LONG).show();
+                clean();//resets contents of the text fields after data has been sent to db
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+    private void saveDeal() {
+        //read contents of the EditTexts:
+        String title = txtTitle.getText().toString();
+        String description  = txtDescription.getText().toString();
+        String price = txtPrice.getText().toString();
+        //create a deal:
+        TravelDeal deal = new TravelDeal(title,description,price,"");
+        //call push() to insert an object to the db, then call setValue() passing the deal object:
+        mDatabaseReference.push().setValue(deal);
+
+    }
+
+    private void clean() {
+        //set all the EditText fields to empty strings
+        txtTitle.setText("");
+        txtDescription.setText("");
+        txtPrice.setText("");
+        //give focus to the txtTitle EditText
+        txtTitle.requestFocus();
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //create instance of menuInflater object
