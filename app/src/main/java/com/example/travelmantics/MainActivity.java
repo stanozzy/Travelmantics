@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //create an instance of the database using getInstance() method:
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        //create the refernce calling getReference() and then the child method:
-        mDatabaseReference = mFirebaseDatabase.getReference().child("traveldeals");
-
+        FirebaseUtil.openFbReference("traveldeals");
+        //create an instance of the database
+        mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
+        //create the reference
+        mDatabaseReference = FirebaseUtil.mDatabaseReference;
         txtTitle = (EditText)findViewById(R.id.txtTitle);
         txtDescription = (EditText) findViewById(R.id.txtDescription);
         txtPrice = (EditText) findViewById(R.id.txtPrice);
