@@ -55,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 saveDeal();
                 Toast.makeText(this, "DEAL SAVED", Toast.LENGTH_LONG).show();
                 clean();//resets contents of the text fields after data has been sent to db
+                backToList(); 
                 return true;
+            case R.id.delete_menu:
+                deleteDeal();
+                Toast.makeText(this, "DEAL DELETED", Toast.LENGTH_LONG).show();
+                backToList();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -63,14 +68,32 @@ public class MainActivity extends AppCompatActivity {
     }
     private void saveDeal() {
         //read contents of the EditTexts:
-        String title = txtTitle.getText().toString();
-        String description  = txtDescription.getText().toString();
-        String price = txtPrice.getText().toString();
+        deal.setTitle(txtTitle.getText().toString());
+        deal.setDescription(txtDescription.getText().toString());
+        deal.setPrice(txtPrice.getText().toString());
         //create a deal:
-        TravelDeal deal = new TravelDeal(title,description,price,"");
-        //call push() to insert an object to the db, then call setValue() passing the deal object:
-        mDatabaseReference.push().setValue(deal);
+        if (deal.getId() == null){
+            //call push() to insert an object to the db:
+            mDatabaseReference.push().setValue(deal);
+        }
+        else{
+            mDatabaseReference.child(deal.getId()).setValue(deal);
+        }
 
+
+    }
+
+    private void deleteDeal(){
+        if (deal == null){
+            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mDatabaseReference.child(deal.getId()).removeValue();
+    }
+
+    private  void backToList(){
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 
     private void clean() {
