@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,6 +51,16 @@ public class ListActivity extends AppCompatActivity {
             case R.id.insert_menu:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.logout_menu:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                FirebaseUtil.attachListener();
+                            }
+                        });
+                FirebaseUtil.detachListener();
                 return true;
         }
         return super.onOptionsItemSelected(item);
