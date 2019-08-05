@@ -6,13 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_large"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        android:fontFamily="@font/bubblegum_sans"
+        android:hint="@string/title_hint"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        android:fontFamily="@font/bubblegum_sans"
+        android:textColor="@color/colorAccent"
+        android:hint="@string/price_hint"
+        android:inputType="numberDecimal"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+    <EditText
+        android:id="@+id/txtDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        android:fontFamily="@font/bubblegum_sans"
+        android:hint="@string/description_hint"
+        android:inputType="textMultiLine"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+
+    <Button
+        android:id="@+id/btnImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="@string/Img_btn_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnImage"
+        app:srcCompat="@color/fui_transparent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
