@@ -44,4 +44,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+
+    <Button
+        android:id="@+id/btnImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        android:text="@string/Img_btn_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/txt_margin_std"
+        android:layout_marginTop="@dimen/txt_margin_std"
+        android:layout_marginEnd="@dimen/txt_margin_std"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnImage"
+        app:srcCompat="@color/fui_transparent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
