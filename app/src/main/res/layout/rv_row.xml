@@ -24,6 +24,7 @@
     android:layout_marginTop="@dimen/txt_margin_std"
     android:text="TextView"
     android:textSize="@dimen/title_large"
+    android:fontFamily="@font/bubblegum_sans"
     app:layout_constraintStart_toEndOf="@+id/imageDeal"
     app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +35,8 @@
     android:layout_marginStart="@dimen/txt_margin_std"
     android:layout_marginTop="@dimen/txt_margin_std"
     android:text="TextView"
+    android:textSize="@dimen/text_price"
+    android:fontFamily="@font/bubblegum_sans"
     app:layout_constraintStart_toEndOf="@+id/imageDeal"
     app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
@@ -44,6 +47,7 @@
         android:layout_marginTop="@dimen/txt_margin_std"
         android:layout_marginEnd="50dp"
         android:text="TextView"
+        android:fontFamily="@font/bubblegum_sans"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_price"
         app:layout_constraintEnd_toEndOf="parent"
